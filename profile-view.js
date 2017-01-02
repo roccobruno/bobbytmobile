@@ -30,7 +30,7 @@ var ProfileView = React.createClass({
             source={{uri: this.props.profile.picture}}
           />
           <Text style={styles.title}>Welcome {this.props.profile.name} </Text>
-           <Text style={styles.title}>Welcome Token {this.props.token.idToken} </Text>
+<Text style={styles.title}>Welcome {this.props.profile.email} </Text>
 
         </View>
         <TouchableHighlight

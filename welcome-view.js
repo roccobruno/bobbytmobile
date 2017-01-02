@@ -11,10 +11,28 @@ import {
 import Auth0Lock from 'react-native-lock';
 
 //import credentials from './auth0-credentials';
+//var options = new Map();
+//options.set("scope", "openid email")
+
+//var options = {
+//  auth: {
+//    params: {scope: 'openid email picture'},
+//  }
+//};
+
+var options = {
+  auth: {
+    params: {
+      state: 'foo',
+      scope: 'openid email user_metadata app_metadata picture'
+    },
+  }
+};
 
 var lock = new Auth0Lock({
                            clientId: "iL5kqBlg9y2POSkCKL5EoNcYiQh2347i",
-                           domain: "roccobruno.eu.auth0.com"
+                           domain: "roccobruno.eu.auth0.com",
+options
                          });
 
 var WelcomeView = React.createClass({
