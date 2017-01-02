@@ -9,10 +9,15 @@ import {
   Alert,
 } from 'react-native';
 
-var API_ENDPOINT = 'http://localhost:3001/secured/ping';
+var API_ENDPOINT = 'http://10.0.2.2:9000/api/bobbit/callback';
+//var API_ENDPOINT = 'http://www.google.co.uk';
 
 var ProfileView = React.createClass({
   render: function() {
+
+
+
+
     return (
       <View style={styles.container}>
         <View style={styles.messageBox}>
@@ -24,7 +29,9 @@ var ProfileView = React.createClass({
             style={styles.avatar}
             source={{uri: this.props.profile.picture}}
           />
-          <Text style={styles.title}>Welcome {this.props.profile.name}</Text>
+          <Text style={styles.title}>Welcome {this.props.profile.name} </Text>
+           <Text style={styles.title}>Welcome Token {this.props.token.idToken} </Text>
+
         </View>
         <TouchableHighlight
           style={styles.callApiButton}
@@ -55,7 +62,7 @@ var ProfileView = React.createClass({
       .catch((error) => {
         Alert.alert(
           'Request Failed',
-          'Please download the API seed so that you can call it',
+          'Please download the API seed so that you can call it ' +API_ENDPOINT + ' error '+error ,
           [
             {text: 'OK'},
           ]
