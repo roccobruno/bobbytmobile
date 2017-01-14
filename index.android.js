@@ -13,6 +13,8 @@ import {
 import WelcomeView from './welcome-view';
 import ProfileView from './profile-view';
 
+var Storage = require("./js/tokenStorage.js").Storage;
+
 class Auth0Sample extends Component {
   render() {
       return (

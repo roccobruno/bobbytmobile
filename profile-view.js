@@ -5,18 +5,18 @@ import {
   Text,
   View,
   Image,
+    AsyncStorage,
   TouchableHighlight,
   Alert,
 } from 'react-native';
+
+var Storage = require("./js/tokenStorage.js").Storage;
 
 var API_ENDPOINT = 'http://10.0.2.2:9000/api/bobbit/callback';
 //var API_ENDPOINT = 'http://www.google.co.uk';
 
 var ProfileView = React.createClass({
   render: function() {
-
-
-
 
     return (
       <View style={styles.container}>
@@ -27,10 +27,10 @@ var ProfileView = React.createClass({
           />
           <Image
             style={styles.avatar}
-            source={{uri: this.props.profile.picture}}
+            source={{uri: this.props.profile.picture()}}
           />
-          <Text style={styles.title}>Welcome {this.props.profile.name} </Text>
-<Text style={styles.title}>Welcome {this.props.profile.email} </Text>
+          <Text style={styles.title}>Welcome {this.props.profile.firstName()} </Text>
+          <Text style={styles.title}>Welcome {this.props.profile.email()} </Text>
 
         </View>
         <TouchableHighlight
@@ -39,9 +39,23 @@ var ProfileView = React.createClass({
           onPress={this._onCallApi}>
           <Text>Call API</Text>
         </TouchableHighlight>
+        <TouchableHighlight
+                  style={styles.callApiButton}
+                  underlayColor='#949494'
+                  onPress={this._onLogout}>
+                  <Text>Logout</Text>
+                </TouchableHighlight>
       </View>
     );
   },
+  _onLogout: function() {
+       var tokenStorage = new Storage()
+       tokenStorage.logout()
+//       AsyncStorage.removeItem("id_token")
+       this.props.navigator.push({
+                   name: 'Welcome'
+                 });
+     },
   _onCallApi: function() {
     fetch(API_ENDPOINT, {
         method: "GET",
